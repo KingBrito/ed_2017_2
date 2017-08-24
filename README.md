@@ -16,3 +16,11 @@
 - **Todo**: 
     - contar quantas árvores foram queimadas usando o retorno da recursão.
     - saber se há um caminho entre dois pontos.
+
+## s02e01 - Fractal da àrvore
+- Alterações no código da queimada
+- Introdução ao projeto de fractais (qtcreator e sfml)
+- Fractal da árvore
+- **Todo**:
+    - Fazer alterações no código da árvore (moodle)
+    - Fazer alterações no código da queimada (moodle)

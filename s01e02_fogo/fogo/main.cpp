@@ -11,23 +11,35 @@ void mostrar(vector<string>& mat){
     cout << string(50, '\n');
     for(string s : mat)
         cout << s << endl;
-    getchar();
+    //getchar();
 }
 
 
-void queimar(vector<string> &mat, int l, int c){
+int queimar(vector<string> &mat, int l, int c){
+
+    int cont = 0;
+    //retorno
     if(l < 0 || l >= nl)
-        return;
+        return cont;
     if(c < 0 || c >= nc)
-        return;
+        return cont;
     if(mat[l][c] != '#')
-        return;
+        return cont;
+
+    //ação
     mat[l][c] = '.';
     mostrar(mat);
-    queimar(mat, l, c + 1);
-    queimar(mat, l, c - 1);
-    queimar(mat, l - 1, c);
-    queimar(mat, l + 1, c);
+    cont += 1;
+
+    //reduçao
+    cont += queimar(mat, l, c + 1);
+    cont += queimar(mat, l, c - 1);
+    cont += queimar(mat, l - 1, c);
+    cont += queimar(mat, l + 1, c);
+
+    mat[l][c] = '*';
+    mostrar(mat);
+    return cont;
 }
 
 
@@ -48,10 +60,10 @@ int main()
     for(int i = 0; i < narvores; i++){
         mat[rand() % nl][rand() % nc] = '#';
     }
-    queimar(mat, 0, 0);
+    int total = queimar(mat, 0, 0);
 
     mostrar(mat);
-
+    cout << total << " arvores queimaram\n";
 
     return 0;
 }
