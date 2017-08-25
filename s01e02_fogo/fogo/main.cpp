@@ -11,7 +11,7 @@ void mostrar(vector<string>& mat){
     cout << string(50, '\n');
     for(string s : mat)
         cout << s << endl;
-    //getchar();
+    getchar();
 }
 
 
