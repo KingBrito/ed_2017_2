@@ -24,3 +24,13 @@
 - **Todo**:
     - Fazer alterações no código da árvore (moodle)
     - Fazer alterações no código da queimada (moodle)
+
+## s02e02 - Programação do Vector dinamico
+- Dicas de como fazer os fractais
+- Programação do vector com alocação dinamica
+- Conceito de contrutor
+- Uso do operador de referencia para retorno de funções
+- Uso do static dummy
+- Introdução à sobrecarga de operadores
+- **Todo**:
+    - Fazer os fractais(mooodle)
