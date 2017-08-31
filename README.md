@@ -34,3 +34,10 @@
 - Introdução à sobrecarga de operadores
 - **Todo**:
     - Fazer os fractais(mooodle)
+
+## s03e01 - Refazendo vector em C
+- Explicações sobre contrutores e destrutores
+- Explicando alocação dinamica com new e delete, malloc e free
+- Mostrando o modelo de vector usando c puro.
+- Mostrando alguns fractais.
+- Nosso trabalho dos fractais ficou para domingo.
