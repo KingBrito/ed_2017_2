@@ -42,22 +42,48 @@ struct SList{
         head = nullptr;
     }
 
-//    ~SList(){
-//        clear(begin(), end());
-//        delete(head);
-//        delete(tail);
-//    }
+    ~SList(){
+        clear();
+    }
+
+    void inserirOrdenado(int value){
+        if(head == nullptr || (head->value > value)){
+            head = new Node(value, head);
+            return;
+        }
+        auto node = head;
+        while(node->next != nullptr){
+            if(node->next->value >= value){
+                node->next = new Node(value, node->next);
+                return;
+            }
+            node = node->next;
+        }
+        //caso 4: fora da lista
+        node->next = new Node(value);
+    }
+
+    Node * _rinserirOrdenado(Node * node, int value){
+        if(node == nullptr || (node->value >= value))
+            return new Node(value, node);
+        node->next = _rinserirOrdenado(node->next, value);
+        return node;
+    }
+
+    void rinserirOrdenado(int value){
+        head = _rinserirOrdenado(head, value);
+    }
 
     //gerar a string que corresponde a estrutura de dados
-//    string serialize() {
-//        stringstream ss;
-//        auto node = head->next;
-//        while(node != tail){
-//            ss << node->value << " ";
-//            node = node->next;
-//        }
-//        return ss.str();
-//    }
+    string serialize() {
+        stringstream ss;
+        auto node = head;
+        while(node != nullptr){
+            ss << node->value << " ";
+            node = node->next;
+        }
+        return ss.str();
+    }
 
 //    SList(string serial){
 //        head = new Node;
@@ -103,14 +129,14 @@ struct SList{
             node = node->next;
         node->next = new Node(value);
     }
-
+private:
     Node * _rpush_back(Node * node, int value){
         if(node == nullptr)
             return new Node(value);
         node->next = _rpush_back(node->next, value);
         return node;
     }
-
+public:
     void rpush_back(int value){
         head = _rpush_back(head, value);
     }
@@ -187,7 +213,7 @@ struct SList{
         return false;
     }
 
-#define IS_SAD
+#define IS_SAD 1
 #if IS_SAD
     Node * _rerase(Node * node, int value, bool *result){
         if(node == nullptr){
@@ -284,7 +310,7 @@ struct SList{
 
     int& back(){
         static int dummy = 0;
-        if(node == nullptr)
+        if(head == nullptr)
             return dummy;
         return _back(head);
     }
@@ -298,3 +324,28 @@ struct SList{
 //        return saida;
 //    }
 };
+
+int main(){
+    SList list;
+    list.inserirOrdenado(3);
+    list.inserirOrdenado(1);
+    list.inserirOrdenado(5);
+    list.inserirOrdenado(4);
+    list.rinserirOrdenado(9);
+    cout << list.serialize() << endl;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
