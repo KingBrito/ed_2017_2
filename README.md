@@ -41,3 +41,6 @@
 - Mostrando o modelo de vector usando c puro.
 - Mostrando alguns fractais.
 - Nosso trabalho dos fractais ficou para domingo.
+
+
+
