@@ -16,12 +16,87 @@ public:
     }
 };
 
+
+//class List{
+
+//    Node ** mfind(Node ** elo, int value){
+//        Node * node = *elo;
+//        if(node == nullptr)
+//            return elo;
+//        if(node->value == value)
+//            return elo;
+//        return mfind(&node->next, value);
+//    }
+
+//    void remove(int value){
+//        auto elo = mfind(&head, value);
+//        auto node = *elo;
+//        if(node == nullptr)
+//            return;
+//        *elo = (*elo)->next;
+//        delete(node);
+//    }
+//};
+
+
+
 class Tree{
 public:
     Node * root {nullptr};
 
     Tree(){
 
+    }
+
+    Node ** mfind(Node ** elo, int value){
+        Node * node = *elo;
+        if(node == nullptr)
+            return elo;
+        if(node->value == value)
+            return elo;
+        if(value > node->value)
+            return mfind(&node->right, value);
+        return mfind(&node->left, value);
+    }
+
+    void inserir(int value){
+        Node ** elo = mfind(&root, value);
+        if(*elo == nullptr)
+            *elo = new Node(value);
+    }
+
+    void _remove(Node ** elo){
+        auto node = *elo;
+        if(node->left == nullptr && node->right == nullptr){
+            *elo = nullptr;
+            delete node;
+            return;
+        }
+        if(node->left == nullptr){
+            *elo = node->right;
+            delete node;
+            return;
+        }
+        if(node->right == nullptr){
+            *elo = node->left;
+            delete node;
+            return;
+        }
+        Node ** elo_ant = &(node)->left;
+        Node * antecessor = *elo_ant;
+        while(antecessor->right != nullptr){
+            elo_ant = &antecessor->right;
+            antecessor = *elo_ant;
+        }
+        int value_ant = antecessor->value;
+        _remove(elo_ant);
+        node->value = value_ant;
+    }
+
+    void remove(int value){
+        Node **elo = mfind(&root, value);
+        if(*elo != nullptr)
+            _remove(elo);
     }
 
     Node * clone(Node * other){
@@ -40,12 +115,12 @@ public:
     Node _remove(Node * node, int value){
         if(null)
             null
-        if(quem vai moorer)
-           mata_tudo(node)
-           return null
-        _remove(left)
-                right
-       return node
+                    if(quem vai moorer)
+                    mata_tudo(node)
+                    return null
+                    _remove(left)
+                    right
+                    return node
     }
 
     ~Tree(){
@@ -82,7 +157,7 @@ public:
         if(node != nullptr && other != nullptr)
             if(node->value == other->value)
                 return requals(node->left, other->left) &&
-                       requals(node->right, other->right);
+                        requals(node->right, other->right);
         return false;
     }
 
@@ -129,7 +204,7 @@ public:
     int menor(Node * node){
         if(node->left != nullptr && node->right != nullptr)
             return std::min(node->value,
-                   std::min(menor(node->left), menor(node->right)));
+                            std::min(menor(node->left), menor(node->right)));
         if(node->left != nullptr)
             return std::min(node->value, menor(node->left));
         if(node->right != nullptr)
@@ -194,8 +269,11 @@ int main()
 }
 
 
-
-
+digite comando:
+ins 4
+del 3
+somar
+menor
 
 
 
